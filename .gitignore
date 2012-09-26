@@ -1,0 +1,8 @@
+/eggs
+/develop-eggs
+/parts
+/bin
+/etc
+.installed.cfg
+*.swo
+*.swp
