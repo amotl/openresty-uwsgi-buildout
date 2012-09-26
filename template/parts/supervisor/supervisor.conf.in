@@ -19,7 +19,7 @@ supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface
 
 
 [program:nginx]
-command = ${openresty:location}/nginx/sbin/nginx -c ${buildout:directory}/etc/nginx.conf
+command = ${openresty:location}/nginx/sbin/nginx -c ${buildout:directory}/etc/nginx.conf -g "daemon off;"
 process_name = nginx
 directory = ${openresty:location}/nginx/sbin
 priority = 10

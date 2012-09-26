@@ -1,7 +1,6 @@
 
 #user  nobody;
 worker_processes  1;
-daemon off;
 
 pid        ${buildout:directory}/var/nginx.pid;
 

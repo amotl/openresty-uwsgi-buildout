@@ -1,12 +1,12 @@
 #!/bin/sh
 NGINX_DIR=${openresty:location}/nginx
-PIDFILE=${buildout:directory}/var/logs/nginx.pid
+PIDFILE=${buildout:directory}/var/nginx.pid
 case "$1" in
     checkconfig)
         LD_LIBRARY_PATH=$NGINX_DIR/lib $NGINX_DIR/sbin/nginx -c ${buildout:directory}/etc/nginx.conf -t
         ;;
     start)
-        LD_LIBRARY_PATH=$NGINX_DIR/lib $NGINX_DIR/sbin/nginx -c ${buildout:directory}/etc/nginx.conf
+        LD_LIBRARY_PATH=$NGINX_DIR/lib $NGINX_DIR/sbin/nginx -c ${buildout:directory}/etc/nginx.conf -g "daemon on;"
         ;;
     stop)
         kill -QUIT $(cat $PIDFILE)
