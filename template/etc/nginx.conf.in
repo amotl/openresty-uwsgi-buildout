@@ -34,6 +34,41 @@ http {
             index  index.html index.htm;
         }
 
+
+        # testing subrequests against an "echo" location
+        location /plain/echo/method {
+            echo -n "request method was: ";
+            echo $echo_request_method;
+        }
+        location /plain/echo/method/subrequest/echo {
+            echo_subrequest POST /plain/echo/method;
+        }
+        location /plain/echo/method/subrequest/lua {
+            content_by_lua '
+                res = ngx.location.capture("/plain/echo/method", { method = ngx.HTTP_POST });
+                ngx.print(res.body)
+                ngx.exit(ngx.HTTP_OK)
+            ';
+        }
+
+
+        # testing subrequests against an "uwsgi" location
+        location /uwsgi/echo/method {
+            include     ${openresty:location}/nginx/conf/uwsgi_params;
+            uwsgi_pass  unix://${buildout:directory}/var/uwsgi/uwsgi.sock;
+        }
+        location /uwsgi/echo/method/subrequest/echo {
+            echo_subrequest POST /uwsgi/echo/method;
+        }
+        location /uwsgi/echo/method/subrequest/lua {
+            content_by_lua '
+                res = ngx.location.capture("/uwsgi/echo/method", { method = ngx.HTTP_POST });
+                ngx.print(res.body)
+                ngx.exit(ngx.HTTP_OK)
+            ';
+        }
+
+
         #error_page  404              /404.html;
 
         # redirect server error pages to the static page /50x.html
