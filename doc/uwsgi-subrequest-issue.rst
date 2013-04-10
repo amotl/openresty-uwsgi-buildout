@@ -2,6 +2,17 @@
 uWSGI subrequest method issue
 =============================
 
+.. note::
+
+    The solution to this issue is quite easy by simply doing::
+
+        uwsgi_param REQUEST_METHOD $echo_request_method;
+
+    .. seealso::
+
+        http://trac.nginx.org/nginx/ticket/332#comment:1
+
+
 While switching our Python WSGI Pyramid application stack
 to uWSGI behind OpenResty we hit a road block when issuing
 subrequests from Lua to the uWSGI application.

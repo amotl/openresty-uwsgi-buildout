@@ -55,6 +55,7 @@ http {
         # testing subrequests against an "uwsgi" location
         location /uwsgi/echo/method {
             include     ${openresty:location}/nginx/conf/uwsgi_params;
+            uwsgi_param  REQUEST_METHOD     $echo_request_method;
             uwsgi_pass  unix://${buildout:directory}/var/uwsgi/uwsgi.sock;
         }
         location /uwsgi/echo/method/subrequest/echo {
