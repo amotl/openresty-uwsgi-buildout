@@ -1,20 +1,32 @@
-==============
-NGINX Buildout
-==============
+==================
+OpenResty Buildout
+==================
+
 
 Installation
 ============
+Simply run these commands for installation::
 
-Simply run this commands for the installation::
+    python bootstrap.py -v 1.7.0
+    bin/buildout
 
-    python bootstrap.py
-    bin/buildout -vvN
+Fire up both the uwsgi and the nginx servers in different consoles::
+
+    bin/uwsgi --xml parts/uwsgi/uwsgi.xml
+    bin/nginx-nodaemon
+
 
 Configuration
 =============
 
-To configure the nginx, simply edit the file located in
+Nginx
+-----
+To reconfigure Nginx, simply edit the file located in
 ``templates/etc/nginx.conf.in`` and run the following command::
     
-    bin/buildout -vvN install templates
+    bin/buildout install templates
 
+Buildout
+--------
+To reconfigure the buildout infrastructure, see ``buildout.cfg``,
+``openresty.cfg``, ``uwsgi.cfg`` and ``versions.cfg``.

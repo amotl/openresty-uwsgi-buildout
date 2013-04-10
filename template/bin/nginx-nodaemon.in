@@ -1,0 +1,7 @@
+#!/bin/sh
+
+NGINX_DIR=${openresty:location}/nginx
+NGINX_BIN=$NGINX_DIR/sbin/nginx
+NGINX_CONFIG=${buildout:directory}/etc/nginx.conf
+LD_LIBRARY_PATH=$NGINX_DIR/lib
+$NGINX_BIN -c $NGINX_CONFIG -g "daemon off;"

@@ -18,15 +18,15 @@ http {
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  ${buildout:directory}/var/logs/nginx_access.log  main;
-    error_log  ${buildout:directory}/var/logs/nginx_error.log debug;
+    access_log  ${buildout:directory}/var/nginx/access.log  main;
+    error_log  ${buildout:directory}/var/nginx/error.log debug;
 
     sendfile        on;
 
     keepalive_timeout  65;
 
     server {
-        listen       ${nginx:port};
+        listen       ${config:nginx-port};
         server_name  localhost;
 
         location / {
