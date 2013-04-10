@@ -3,6 +3,7 @@
 /parts
 /bin
 /etc
+/var
 .installed.cfg
 *.swo
 *.swp
