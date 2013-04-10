@@ -2,16 +2,19 @@
 uWSGI subrequest method issue
 =============================
 
-.. note::
+Solution
+========
+The solution to this issue is quite easy by simply doing::
 
-    The solution to this issue is quite easy by simply doing::
+    uwsgi_param REQUEST_METHOD $echo_request_method;
 
-        uwsgi_param REQUEST_METHOD $echo_request_method;
+See also: http://trac.nginx.org/nginx/ticket/332#comment:1
 
-    .. seealso::
+Thanks Maxim!
 
-        http://trac.nginx.org/nginx/ticket/332#comment:1
 
+Intro
+=====
 
 While switching our Python WSGI Pyramid application stack
 to uWSGI behind OpenResty we hit a road block when issuing
